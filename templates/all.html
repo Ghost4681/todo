@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todo</title>
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<style>
+    body {
+        margin-top: 20px;
+        background: #f8f8f8;
+    }
+    
+    .card {
+        padding: 25px;
+        margin-bottom: 20px;
+        border: initial;
+        background: #fff;
+        border-radius: calc(.15rem - 1px);
+        box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+    }
+    
+    .textbox {
+        background: none;
+        border-color: rgb(151, 151, 151);
+        border-width: 1px;
+        width: 100%;
+        padding-left: 8px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        font-size: 14px;
+    }
+    
+    .dropdown {
+        padding: 20px 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        background: #c06162;
+        background: #34495e;
+        position: relative;
+        font-size: 18px;
+        perspective: 1000px;
+        z-index: 100;
+    }
+    
+    .dropdown_menu {
+        top: 100%;
+        left: 0;
+        width: 100%;
+        perspective: 1000px;
+        z-index: -1;
+    }
+    
+    .dropdown_menu--animated {
+        display: none;
+    }
+    
+    .dropdown_menu-6 {
+        animation: growDown 300ms;
+        transform-origin: top center;
+    }
+    
+    @-moz-keyframes growDown {
+        0% {
+            transform: scaleY(0);
+        }
+        80% {
+            transform: scaleY(1.1);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+    }
+    
+    @-webkit-keyframes growDown {
+        0% {
+            transform: scaleY(0);
+        }
+        80% {
+            transform: scaleY(1.1);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+    }
+    
+    @-o-keyframes growDown {
+        0% {
+            transform: scaleY(0);
+        }
+        80% {
+            transform: scaleY(1.1);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+    }
+    
+    @keyframes growDown {
+        0% {
+            transform: scaleY(0);
+        }
+        80% {
+            transform: scaleY(1.1);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+    }
+</style>
+
+<body>
+    {% include "includes/_messages.html" %}
+    <div class="container wow fadeInUp">
+        <div class="row wow fadeInUp">
+            <div class="col-md-12 wow fadeInUp">
+                <div class="card card-white wow fadeInUp">
+                    <h1 class=" wow fadeInUp">Home</h1>
+                    <div class="card-body wow fadeInUp">
+                        <form method="POST">
+                            <input type="text" class=" wow fadeInUp form-control add-task" placeholder="New Task Title..." name="title"><br>
+                            <textarea type="textbox" class="textbox wow fadeInUp" placeholder="New Task Description..." name="task"></textarea><br><br>
+                            <p class="wow fadeInUp">Set Deadline: <input type="datetime-local" name="deadline" placeholder="Deadline"> <button type="submit" class="btn btn-primary" value="Submit">Add Task</button>
+                            </p>
+                        </form>
+                        <ul class="nav nav-pills todo-nav wow fadeInUp">
+                            <li role="presentation" class="nav-item all-task active wow fadeInUp"><a href="/active" class="nav-link">Active</a></li>
+                            <li role="presentation" class="nav-item active-task wow fadeInUp"><a href="/notdone" class="nav-link">Not Done</a></li>
+                            <li role="presentation" class="nav-item completed-task wow fadeInUp"><a href="/completed" class="nav-link">Completed</a></li>
+                        </ul>
+                    </div>
+                    <h1>Statistics</h1>
+                    <canvas id="myChart" style="width:100%;max-width:600px;margin-left: 25%;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script>
+        var xValues = ["Completed Tasks", "Active Tasks", "Not Done"];
+        var yValues = ["{{compcount}}","{{actcount}}","{{notcount}}"];
+        var barColors = [
+          "#b91d47",
+          "#00aba9",
+          "#2b5797",
+          "#e8c3b9",
+          "#1e7145"
+        ];
+        
+        new Chart("myChart", {
+          type: "pie",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              text: "Task Distribution"
+            }
+          }
+        });
+        </script>
+    <script src="static/js/jquery-3.2.1.min.js"></script>
+    <script src="static/js/jquery-migrate-3.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="static/js/jquery.backstretch.min.js"></script>
+    <script src="static/js/wow.min.js"></script>
+    <script src="static/js/retina-1.1.0.min.js"></script>
+    <script src="static/js/scripts.js"></script>
+
+</body>
+
+</html>

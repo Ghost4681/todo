@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todo</title>
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<style>
+    body {
+        margin-top: 20px;
+        background: #f8f8f8;
+    }
+    
+    .card {
+        padding: 25px;
+        margin-bottom: 20px;
+        border: initial;
+        background: #fff;
+        border-radius: calc(.15rem - 1px);
+        box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+    }
+    
+    .textbox {
+        background: none;
+        border-color: rgb(151, 151, 151);
+        border-width: 1px;
+        width: 100%;
+        padding-left: 8px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        font-size: 14px;
+    }
+    
+    .dropdown {
+        padding: 20px 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        background: #c06162;
+        background: #34495e;
+        position: relative;
+        font-size: 18px;
+        perspective: 1000px;
+        z-index: 100;
+    }
+    
+    .dropdown_menu {
+        top: 100%;
+        left: 0;
+        width: 100%;
+        perspective: 1000px;
+        z-index: -1;
+    }
+    
+    .dropdown_menu--animated {
+        display: none;
+    }
+    
+    .dropdown_menu-6 {
+        animation: growDown 300ms;
+        transform-origin: top center;
+    }
+    
+    @-moz-keyframes growDown {
+        0% {
+            transform: scaleY(0);
+        }
+        80% {
+            transform: scaleY(1.1);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+    }
+    
+    @-webkit-keyframes growDown {
+        0% {
+            transform: scaleY(0);
+        }
+        80% {
+            transform: scaleY(1.1);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+    }
+    
+    @-o-keyframes growDown {
+        0% {
+            transform: scaleY(0);
+        }
+        80% {
+            transform: scaleY(1.1);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+    }
+    
+    @keyframes growDown {
+        0% {
+            transform: scaleY(0);
+        }
+        80% {
+            transform: scaleY(1.1);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+    }
+</style>
+
+<body>
+    {% include "includes/_messages.html" %}
+    <div class="container wow fadeInUp">
+        <div class="row wow fadeInUp">
+            <div class="col-md-12">
+                <div class="card card-white wow fadeInUp">
+                    <h1>Not Done</h1>
+                    <div class="card-body wow fadeInUp">
+                        <ul class="nav nav-pills todo-nav wow fadeInUp">
+                            <li role="presentation" class="nav-item active-task wow fadeInUp"><a href="/" class="nav-link">Home</a></li>
+                            <li role="presentation" class="nav-item completed-task wow fadeInUp"><a href="/active" class="nav-link">Active Tasks</a></li>
+                            <li role="presentation" class="nav-item completed-task wow fadeInUp"><a href="/completed" class="nav-link">Completed</a></li>
+                        </ul>
+                        <table class="table table-striped wow fadeInUp">
+                            <tr class="wow fadeInUp">
+                                <th width="60%" class=" wow fadeInUp">Title</th>
+                                <th class=" wow fadeInUp">Deadline</th>
+                                <th></th>
+                            </tr>
+                            {% for notdonedata in notdonedata %}
+                            <tr class=" wow fadeInUp">
+                                <td class=" wow fadeInUp"><a href="#" onclick="showdesc('{{notdonedata.id}}')">{{notdonedata.title}}</a></td>
+                                <td class=" wow fadeInUp">{{notdonedata.deadline}}</td>
+                                <td class=" wow fadeInUp"><a href="/notdone/{{notdonedata.id}}" class="btn btn-success btnstretch">Undo</a></td>
+                            </tr>
+                            <tr id="{{notdonedata.id}}" style="display: none; animation-direction: normal;" class="dropdown_menu-6 wow fadeInUp">
+                                <td colspan="4" width="400px" class="dropdown_item-1 wow fadeInUp">
+                                    {{notdonedata.task}}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        function showdesc(id) {
+            var desc = document.getElementById(id).style.display;
+            /*document.getElementById(id).classList.toggle("dropdown_menu-6");*/
+            if (desc == "none") {
+                document.getElementById(id).style.display = "flex";
+
+                /*var wbefy = document.getElementById(id).children.item(0).clientWidth;
+                if (wbefy > 400) {
+                    document.getElementById(id).children.item(0).width = "400px";
+                }*/
+            } else {
+                document.getElementById(id).style.display = "none";
+            }
+        }
+    </script>
+    <script src="static/js/jquery-3.2.1.min.js"></script>
+    <script src="static/js/jquery-migrate-3.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="static/js/jquery.backstretch.min.js"></script>
+    <script src="static/js/wow.min.js"></script>
+    <script src="static/js/retina-1.1.0.min.js"></script>
+    <script src="static/js/scripts.js"></script>
+
+</body>
+
+</html>
