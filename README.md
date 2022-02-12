@@ -13,7 +13,6 @@ These are the following things you need to do before running it on your PC:
 > \>>>pip install flask
 > 
 > \>>>pip install psycopg2
-> 
 > \>>>pip install psycopg2-binary
 > 
 > \>>>pip install flask-sqlalchemy
