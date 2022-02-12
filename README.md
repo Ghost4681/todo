@@ -1,4 +1,4 @@
-# todo
+# To-Do
 
 This is a To-Do app with python and sql as its back end and HTML as its frontend.
 
@@ -11,10 +11,15 @@ These are the following things you need to do before running it on your PC:
 - Open the repository on your cmd
 - Run the following commands: (you could optionally also create a virtual environment before installing these modules)
 > \>>>pip install flask
+> 
 > \>>>pip install psycopg2
+> 
 > \>>>pip install psycopg2-binary
+> 
 > \>>>pip install flask-sqlalchemy
+> 
 > \>>>pip install gunicorn
+> 
 > \>>>pip install functools
 - This application stores its information in a database using **SQL** (preferably postgresql)
 -   Postgresql can be can be download from the following [link](https://www.postgresql.org/download/)
