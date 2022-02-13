@@ -2,7 +2,7 @@
 
 This is a To-Do app with python and sql as its back end and HTML as its frontend.
 
-# Tutorial
+# Overview
 ## Homepage
 On running the app the first screen to be seen should be the **Home** page where you can add new tasks. On scrolling one can also see a **Statistic** Heading where there is a pie chart of the task distributions based on the number of tasks the user has pending, completed, and not done.
 
@@ -21,7 +21,7 @@ There are tasks that after a point are just not that important. Such tasks which
 ## Navigating Task Lists
 Apart from the implicit redirection that the app does when an task is completed, the user can also navigate between different task list as and when they please. This can be done by clicking the links **Home**, **Completed**, **Active Tasks**, **Not Done** given below the heading of the page the user is in.
 
-# How To Get it to work on your PC!
+# Getting Started
 
 These are the following things you need to do before running it on your PC:
 - Import the the code onto your computer by clicking on the green button "Code"
@@ -51,9 +51,10 @@ These are the following things you need to do before running it on your PC:
 
 That's all you need to do to enjoy this minimalistic TO-DO App!
 
+
 # Developer's Note
 ## How Its Made!
-This is the third website I have made at this point with HTML, CSS and JS and hence I was pretty well equipped with the basics of setting up a new website, such as creating a python file and writing a standard code for a url. Then I created looked for todo app templates on the web (cause its not that unique of a project🙄), and sure enough there was a bootstrap template for it. So i decided to work on it at the start and later change the design elements to the way I like. I almost instantly removed the js part from the bootstrap template because I prefer writing my own js scripts. After that it was just all about making things happen. I wanted the task title to strike off when it is completed and then go into the completed tasks page, but that seemed a little overkill for a "minimalistic" todo app. After tweaking and experimenting with the templates I was ready with 4 URL's. Since there was a need for the integration of a database in the app, I felt there was a need to set up 4 tables, one for all tasks, one for active ones, one for completed and one for not done but later decided all tasks was not needed. I have worked with postgresql before and I was comfortable with it so I went with that, after configuring and setting up my database, I connected it to my app and created all the tables required by the app.
+This is the third website I have made at this point with HTML, CSS and JS and hence I was pretty well equipped with the basics of setting up a new website, such as creating a python file and writing a standard code for a url. Then I created looked for todo app templates on the web (cause its not that unique of a project), and sure enough there was a bootstrap template for it. So i decided to work on it at the start and later change the design elements to the way I prefer. I almost instantly removed the js part from the bootstrap template because I prefer writing my own js scripts. After that it was just all about making things happen. I wanted the task title to strike off when it is completed and then go into the completed tasks page, but that seemed a little overkill for a "minimalistic" todo app. After tweaking and experimenting with the templates I was ready with 4 URL's. Since there was a need for the integration of a database in the app, I felt there was a need to set up 4 tables, one for all tasks, one for active ones, one for completed and one for not done but later decided all tasks was not needed. I have worked with postgresql before and I was comfortable with it so I went with that, after configuring and setting up my database, I connected it to my app and created all the tables required by the app.
 
 Next was adding buttons in each page. The "Add Task" button in the homepage works in a slightly different manner than the rest of the buttons. The Add Task button changes the method to POST which is checked by the python app and then the data enterred is collected and added in the database before redirecting the user to active tasks page. The rest of the buttons could not be made to work in a similar function because there are multiple buttons in other pages all expected to do a similar kind of function. This was worked around by setting each button to redirect to a completely new link (namely accept, decline, completed, not done) corresponding to different functions. The different buttons in each page where differentiated by each one of them redirecting to a url based on the id of their task. Once those worked, the basic functionality of the app was complete.
 
